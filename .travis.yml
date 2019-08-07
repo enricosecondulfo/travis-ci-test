@@ -15,4 +15,4 @@ jdk:
 
 script:
   - ./gradlew clean build
-  # - ./gradlew -q -Pusername=$USERNAME -Ppassword=$PASSWORD testScript
+  - ./gradlew -q -Pusername=$USERNAME -Ppassword=$PASSWORD testScript
