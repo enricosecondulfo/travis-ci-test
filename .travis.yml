@@ -1,3 +1,4 @@
+dist: trusty # for oraclejdk8
 language: java
 jdk:
   - oraclejdk8
