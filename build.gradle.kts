@@ -36,8 +36,7 @@ tasks.register("testScript") {
         val username: String by project
         val password: String by project
 
-        println(username)
-        println(password)
+        println("test " + username +  " + test " + password)
     }
 }
 

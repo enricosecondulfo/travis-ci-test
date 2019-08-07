@@ -14,5 +14,7 @@ jdk:
   - openjdk12
 
 script:
-  - ./gradlew clean build
-  - ./gradlew -q -Pusername=$USERNAME -Ppassword=$PASSWORD testScript
+  - .travis/build.sh
+  - .travis/install.sh
+  # - ./gradlew clean build
+  # - ./gradlew -q -Pusername=$USERNAME -Ppassword=$PASSWORD testScript

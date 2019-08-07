@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-./gradlew
+./gradlew -q -Pusername=$USERNAME -Ppassword=$PASSWORD testScript
