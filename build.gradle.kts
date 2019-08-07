@@ -31,6 +31,16 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+tasks.register("testScript") {
+    doLast {
+        val username: String by project
+        val password: String by project
+
+        println(username)
+        println(password)
+    }
+}
+
 dependencyManagement {
     val springBootVersion: String by project
 
