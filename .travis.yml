@@ -14,4 +14,5 @@ jdk:
   - openjdk12
 
 script:
-  - ./gradlew -q -Pusername=$USERNAME -Ppassword=$PASSWORD testScript
+  - ./gradle clean build
+  # - ./gradlew -q -Pusername=$USERNAME -Ppassword=$PASSWORD testScript
