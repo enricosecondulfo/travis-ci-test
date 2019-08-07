@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-./gradlew clean build
+./gradlew clean build --info
 # ./gradlew -q -Pusername=$USERNAME -Ppassword=$PASSWORD testScript
