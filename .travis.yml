@@ -14,6 +14,7 @@ jdk:
   - openjdk12
 
 script:
+  - chmod -R ug+x .travis
   - .travis/build.sh
   - .travis/install.sh
   # - ./gradlew clean build
