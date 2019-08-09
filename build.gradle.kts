@@ -1,16 +1,20 @@
+import com.jfrog.bintray.gradle.BintrayExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     val kotlinVersion = "1.3.41"
     val springDependencyManagementVersion = "1.0.7.RELEASE"
+    val bintrayVersion = "1.8.4"
 
     kotlin("jvm") version kotlinVersion
     id("io.spring.dependency-management") version springDependencyManagementVersion
     id("java-library")
-
+    id("com.jfrog.bintray") version bintrayVersion
+    `maven-publish`
 }
+
 group = "it.github.enricosecondulfo"
-version = "1.0-SNAPSHOT"
+version = findProperty("version") as Any
 
 repositories {
     mavenCentral()
@@ -36,7 +40,47 @@ tasks.register("testScript") {
         val username: String by project
         val password: String by project
 
-        println("test " + username +  " + test " + password)
+        println("test " + username + " + test " + password)
+    }
+}
+
+val sourcesJar by tasks.registering(Jar::class) {
+    classifier = "sources"
+    from(sourceSets.main.get().allSource)
+}
+
+fun findProperty(property: String) = project.findProperty(property) as String?
+
+bintray {
+    user = findProperty("bintrayUser")
+    key = findProperty("bintrayApiKey")
+    publish = true
+    setPublications("mavenJava")
+    pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
+        repo = "maven"
+        name = findProperty("artifactId")
+        websiteUrl = "https://github.com/enricosecondulfo/travis-ci-test"
+        githubRepo = "enricosecondulfo/travis-ci-test"
+        vcsUrl = "https://github.com/enricosecondulfo/travis-ci-test"
+        description = "test description"
+        setLabels("kotlin")
+        setLicenses("Apache-2.0")
+        version(delegateClosureOf<BintrayExtension.VersionConfig> {
+            name = findProperty("version")
+            vcsTag = findProperty("version")
+        })
+    })
+}
+
+publishing {
+    publications {
+        register("mavenJava", MavenPublication::class) {
+            from(components["java"])
+            groupId = findProperty("groupId")
+            artifactId = findProperty("artifactId")
+            version = findProperty("version")
+            artifact(sourcesJar.get())
+        }
     }
 }
 
