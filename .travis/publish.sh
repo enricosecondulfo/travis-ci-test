@@ -1,7 +1,7 @@
 ##!/usr/bin/bash bash
 
-echo "$TRAVIS_COMMIT_MESSAGE"
-
 if [[ "$TRAVIS_TEST_RESULT" -eq 0 ]] && [[ $TRAVIS_COMMIT_MESSAGE == *"[UPLOAD PACKAGE]"* ]]; then
    ./gradlew -PbintrayUser="$BINTRAY_USER" -PbintrayApiKey="$BINTRAY_API_KEY" bintrayUpload
 fi
+
+
