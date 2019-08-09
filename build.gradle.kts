@@ -1,5 +1,6 @@
 import com.jfrog.bintray.gradle.BintrayExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.konan.properties.Properties
 
 plugins {
     val kotlinVersion = "1.3.41"
@@ -43,6 +44,17 @@ tasks.register("testScript") {
         println("test " + username + " + test " + password)
     }
 }
+
+/* tasks.register("findVersion") {
+    val properties = Properties()
+    val inputStream = project.file("gradle.properties").inputStream()
+    properties.load(inputStream)
+    println(properties.getProperty("version"))
+    properties.setProperty("version", "2.0.3")
+    properties.store(project.file("gradle.properties").outputStream(), "")
+    println(properties.getProperty("version"))
+} */
+
 
 val sourcesJar by tasks.registering(Jar::class) {
     classifier = "sources"
